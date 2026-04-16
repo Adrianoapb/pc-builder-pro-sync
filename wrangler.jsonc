@@ -1,12 +1,12 @@
 {
-  "name": "pc-builder-pro",
+  "name": "pc-builder-pro-sync",
   "compatibility_date": "2026-04-16",
   "pages_build_output_dir": ".",
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "pc-builder-pro",
-      "database_id": "COLOQUE_O_DATABASE_ID_AQUI"
+      "database_id": "COLE_AQUI_O_ID_REAL_DO_BANCO"
     }
   ]
 }
