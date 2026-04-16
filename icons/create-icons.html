@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head><title>Criar Ícones</title>
+<style>body{font-family:Arial;padding:20px;background:#1e293b;color:white;}</style>
+</head>
+<body>
+<h2>Gerando ícones PWA...</h2>
+<div id="status"></div>
+<canvas id="canvas" style="display:none;"></canvas>
+
+<script>
+const sizes = [72, 96, 128, 144, 152, 192, 384];
+const status = document.getElementById('status');
+
+// Carrega icon-512.png e gera os outros tamanhos
+const img = new Image();
+img.crossOrigin = 'anonymous';
+img.src = 'icon-512.png';
+img.onload = () => {
+  const canvas = document.getElementById('canvas');
+  sizes.forEach(size => {
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, size, size);
+    ctx.drawImage(img, 0, 0, size, size);
+    
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = `icon-${size}.png`;
+    document.body.appendChild(link);
+    
+    const p = document.createElement('p');
+    p.innerHTML = `✅ icon-${size}.png gerado - <a href="${link.href}" download="icon-${size}.png" style="color:#6366f1;">Baixar</a>`;
+    status.appendChild(p);
+  });
+  
+  status.innerHTML += '<p style="color:#10b981; margin-top:20px;">🎉 Todos os ícones gerados! Baixe cada um e coloque na pasta icons/</p>';
+};
+img.onerror = () => {
+  status.innerHTML = '<p style="color:red;">Erro ao carregar icon-512.png. Certifique-se que o arquivo existe.</p>';
+};
+</script>
+</body>
+</html>
